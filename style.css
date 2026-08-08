@@ -1,26 +1,31 @@
 /* ================================================================
-   COPA DO MUNDO 2026 — style.css
-   
+   COPA DO MUNDO 2026 — style.css (versão simplificada para aula)
+
    ESTRUTURA DESTE ARQUIVO:
    1. Variáveis CSS (Custom Properties)
    2. Reset e estilos base
    3. Componentes reutilizáveis (container, botões, título de seção)
    4. Navbar
    5. Header
-   6. Section 1 — Seleções (grid de equipes)
-   7. Section 2 — Galeria (grid de fotos dos estádios)
-   8. Section 3 — Formulário de ingressos
-   9. Footer
-   10. Responsividade (Media Queries)
+   6. Classes base das seções (clara/escura)
+   7. Section 1 — Seleções (grid de equipes)
+   8. Section 2 — Galeria (grid de fotos dos estádios)
+   9. Section 3 — Formulário de ingressos
+   10. Footer
+   11. Animação simples
+   12. Responsividade (Media Queries)
+
+   OBS: Esta versão evita recursos "avançados" (calc(), clamp(),
+   grid-template-areas, backdrop-filter, aspect-ratio) e usa só
+   conceitos básicos: seletores, box model, flexbox, grid simples,
+   pseudo-classes (:hover) e media queries.
 ================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Bebas+Neue&display=swap');
 
 /* ----------------------------------------------------------------
    1. VARIÁVEIS CSS (Custom Properties)
-   
-   Cores ajustadas para a temática do futebol/Copa.
 ---------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Bebas+Neue&display=swap');
-
 :root {
   --cor-fundo-escuro: #060f0a;
   --cor-fundo-medio: #0b1f14;
@@ -31,7 +36,7 @@
   --cor-texto-claro: #edfaf3;
   --cor-texto-escuro: #052e1c;
   --cor-texto-suave: #7db89a;
-  --cor-borda: rgba(0,201,122,0.12);
+  --cor-borda: rgba(0, 201, 122, 0.12);
 
   --fonte-principal: 'Inter', 'Segoe UI', Arial, sans-serif;
   --fonte-display: 'Bebas Neue', 'Arial Black', sans-serif;
@@ -40,16 +45,14 @@
   --raio-borda: 14px;
   --raio-borda-pequeno: 8px;
   --largura-maxima: 1140px;
-  --sombra: 0 8px 40px rgba(0,0,0,0.45);
 }
 
 /* ----------------------------------------------------------------
    2. RESET E ESTILOS BASE
 ---------------------------------------------------------------- */
-
 * {
-  margin: 0;           
-  padding: 0;          
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -77,13 +80,12 @@ img {
 
 h1, h2, h3, h4 {
   line-height: 1.2;
-  font-weight: 700; 
+  font-weight: 700;
 }
 
 /* ----------------------------------------------------------------
    3. COMPONENTES REUTILIZÁVEIS
 ---------------------------------------------------------------- */
-
 .container {
   max-width: var(--largura-maxima);
   margin: 0 auto;
@@ -106,14 +108,12 @@ h1, h2, h3, h4 {
   background-color: var(--cor-primaria);
   color: #060f0a;
   font-weight: 700;
-  box-shadow: 0 0 20px rgba(0,201,122,0.25);
 }
 
 .btn-primario:hover {
   background-color: transparent;
   border-color: var(--cor-primaria);
   color: var(--cor-primaria);
-  box-shadow: 0 0 30px rgba(0,201,122,0.35);
 }
 
 .btn-secundario {
@@ -128,7 +128,7 @@ h1, h2, h3, h4 {
 }
 
 .btn-grande {
-  width: 100%;         
+  width: 100%;
   padding: 1.1rem;
   font-size: 1.1rem;
 }
@@ -141,7 +141,7 @@ h1, h2, h3, h4 {
 
 .secao-titulo h2 {
   font-family: var(--fonte-display);
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-size: 3rem;
   font-weight: 400;
   letter-spacing: 1px;
   margin-bottom: 0.5rem;
@@ -159,16 +159,9 @@ h1, h2, h3, h4 {
   position: sticky;
   top: 0;
   padding: 1rem 0;
-  background-color: rgba(6, 15, 10, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background-color: var(--cor-fundo-escuro);
   border-bottom: 1px solid var(--cor-borda);
   z-index: 100;
-  transition: box-shadow 0.3s ease;
-}
-
-#navbar:hover {
-  box-shadow: 0 2px 30px rgba(0,201,122,0.08);
 }
 
 .nav-container {
@@ -204,7 +197,7 @@ h1, h2, h3, h4 {
 }
 
 .nav-links a:hover {
-  color: var(--cor-texto-claro);
+  color: var(--cor-primaria);
 }
 
 /* ----------------------------------------------------------------
@@ -216,9 +209,6 @@ header {
   align-items: center;
   padding: 8rem 1.5rem 5rem;
   background-color: var(--cor-fundo-medio);
-  background-image:
-    radial-gradient(ellipse at 70% 50%, rgba(0, 177, 106, 0.15) 0%, transparent 60%),
-    radial-gradient(ellipse at 20% 80%, rgba(255, 223, 0, 0.1) 0%, transparent 50%);
 }
 
 .header-content {
@@ -237,10 +227,9 @@ header {
 .header-imagem {
   flex-shrink: 0;
   width: 42%;
+  height: 380px;
   border-radius: var(--raio-borda);
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
-  aspect-ratio: 4 / 3;
 }
 
 .header-foto {
@@ -266,16 +255,15 @@ header {
 
 .header-titulo {
   font-family: var(--fonte-display);
-  font-size: clamp(4rem, 11vw, 8rem);
+  font-size: 6rem;
   font-weight: 400;
   line-height: 0.95;
   letter-spacing: 1px;
   margin-bottom: 1.5rem;
-  text-shadow: 0 2px 40px rgba(0,201,122,0.2);
 }
 
 .header-descricao {
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: 1.1rem;
   color: var(--cor-texto-suave);
   max-width: 480px;
   margin-bottom: 2.5rem;
@@ -288,7 +276,7 @@ header {
 }
 
 /* ----------------------------------------------------------------
-   6. ESTILOS DAS SEÇÕES — CLASSES BASE
+   6. CLASSES BASE DAS SEÇÕES
 ---------------------------------------------------------------- */
 .secao {
   padding: var(--espacamento-secao) 0;
@@ -313,7 +301,7 @@ header {
 ---------------------------------------------------------------- */
 .grid-selecoes {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, calc((100% - 2 * 1.5rem) / 3)));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
@@ -334,7 +322,7 @@ header {
 
 .card-imagem {
   width: 100%;
-  aspect-ratio: 3 / 2;
+  height: 200px;
   overflow: hidden;
 }
 
@@ -390,14 +378,14 @@ header {
 
 /* ----------------------------------------------------------------
    8. SECTION 2 — GRID DE GALERIA (Estádios)
+
+   Em vez de "grid-template-areas", usamos grid-column e grid-row
+   para fazer a primeira foto ocupar 2 colunas e 2 linhas.
 ---------------------------------------------------------------- */
 .grid-galeria {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, calc((100% - 2 * 1rem) / 3)));
-  grid-template-rows: 220px 220px;
-  grid-template-areas:
-    "grande grande normal1"
-    "grande grande normal2";
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 220px;
   gap: 1rem;
 }
 
@@ -409,7 +397,8 @@ header {
 }
 
 .foto-grande {
-  grid-area: grande;
+  grid-column: span 2;
+  grid-row: span 2;
 }
 
 .foto-img {
@@ -431,7 +420,7 @@ header {
   left: 0;
   right: 0;
   padding: 0.6rem 1rem;
-  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  background-color: rgba(0, 0, 0, 0.6);
   color: white;
   font-size: 0.85rem;
   font-weight: 500;
@@ -441,14 +430,18 @@ header {
    9. SECTION 3 — FORMULÁRIO + LOCALIZAÇÃO
 ---------------------------------------------------------------- */
 .ingressos-layout {
-  display: grid;
-  grid-template-columns: calc((100% - 2.5rem) / 2) calc((100% - 2.5rem) / 2);
+  display: flex;
   gap: 2.5rem;
-  align-items: start;
+  align-items: flex-start;
+}
+
+.ingressos-layout > div,
+.local-wrapper {
+  flex: 1;
 }
 
 .formulario {
-  background-color: rgba(255,255,255,0.04);
+  background-color: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio-borda);
   padding: 2.5rem;
@@ -458,9 +451,12 @@ header {
 }
 
 .form-linha {
-  display: grid;
-  grid-template-columns: calc((100% - 1.2rem) / 2) calc((100% - 1.2rem) / 2);
+  display: flex;
   gap: 1.2rem;
+}
+
+.form-linha .form-grupo {
+  flex: 1;
 }
 
 .form-grupo {
@@ -480,7 +476,7 @@ select,
 textarea {
   width: 100%;
   padding: 0.75rem 1rem;
-  background-color: rgba(255,255,255,0.07);
+  background-color: rgba(255, 255, 255, 0.07);
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio-borda-pequeno);
   color: var(--cor-texto-claro);
@@ -527,7 +523,7 @@ textarea {
 }
 
 .local-info {
-  background-color: rgba(255,255,255,0.04);
+  background-color: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio-borda);
   padding: 1.5rem;
@@ -624,30 +620,39 @@ address p {
 }
 
 /* ----------------------------------------------------------------
-   ANIMAÇÕES
+   11. ANIMAÇÃO SIMPLES
 ---------------------------------------------------------------- */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .header-subtitulo { animation: fadeUp 0.6s ease both; }
-.header-titulo     { animation: fadeUp 0.7s 0.1s ease both; }
-.header-descricao  { animation: fadeUp 0.7s 0.2s ease both; }
-.header-botoes     { animation: fadeUp 0.7s 0.3s ease both; }
-.header-imagem     { animation: fadeUp 0.8s 0.2s ease both; }
-
-/* Green glow line under active nav */
-.nav-links a:hover {
-  color: var(--cor-primaria);
-}
+.header-titulo    { animation: fadeUp 0.7s ease both; animation-delay: 0.1s; }
+.header-descricao { animation: fadeUp 0.7s ease both; animation-delay: 0.2s; }
+.header-botoes    { animation: fadeUp 0.7s ease both; animation-delay: 0.3s; }
+.header-imagem    { animation: fadeUp 0.8s ease both; animation-delay: 0.2s; }
 
 /* ================================================================
-   10. RESPONSIVIDADE — MEDIA QUERIES
+   12. RESPONSIVIDADE — MEDIA QUERIES
 ================================================================ */
 
 /* ---- TABLET (telas até 768px) ---- */
 @media (max-width: 768px) {
+  .secao-titulo h2 {
+    font-size: 2.4rem;
+  }
+
+  .header-titulo {
+    font-size: 3.5rem;
+  }
+
   .nav-links {
     display: none;
   }
@@ -668,18 +673,15 @@ address p {
   }
 
   .grid-selecoes {
-    grid-template-columns: repeat(2, minmax(0, calc((100% - 1.5rem) / 2)));
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .grid-galeria {
-    grid-template-columns: repeat(2, minmax(0, calc((100% - 1rem) / 2)));
-    grid-template-rows: none;
-    grid-template-areas: none;
+    grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 200px;
   }
 
   .foto-grande {
-    grid-area: auto;
     grid-column: span 2;
     grid-row: span 1;
   }
@@ -690,15 +692,15 @@ address p {
   }
 
   .footer-coluna {
-    width: calc((100% - 2rem) / 2);
+    width: 45%;
   }
 
   .form-linha {
-    grid-template-columns: 100%;
+    flex-direction: column;
   }
 
   .ingressos-layout {
-    grid-template-columns: 100%;
+    flex-direction: column;
   }
 }
 
@@ -709,16 +711,15 @@ address p {
   }
 
   .grid-selecoes {
-    grid-template-columns: 100%;
+    grid-template-columns: 1fr;
   }
 
   .grid-galeria {
-    grid-template-columns: 100%;
+    grid-template-columns: 1fr;
     grid-auto-rows: 200px;
   }
 
   .foto-grande {
-    grid-area: auto;
     grid-column: span 1;
     grid-row: span 1;
   }
