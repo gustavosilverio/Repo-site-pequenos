@@ -1,2 +1,1 @@
-# Repo-site-pequenos
-https://gustavosilverio.github.io/Repo-site-pequenos/
+https://gustavosilverio.github.io/Site-Copa-Pequenos-Talentos/
